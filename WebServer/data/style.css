@@ -1,0 +1,114 @@
+
+
+	* {
+		font-family: 'Oswald', sans-serif;
+		box-sizing: border-box;
+	}
+	body {
+		height: 100vh;
+		margin: 0px;
+		display: grid;
+		grid-template-rows: 60px 1fr 30px;
+		grid-template-columns: 120px 1fr;    
+		grid-template-areas: 
+			"cabecalho cabecalho"
+			"lateral principal"
+			"rodape rodape";
+	}
+	.cabecalho {
+		grid-area: cabecalho;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		z-index: 1;
+		background-color: #1867c0;
+		color: white;
+		font-size:2em;
+	}	
+	.principal {
+		grid-area: principal;
+		height: calc(100vh - 90px);
+		background-color: #f0f0f0;
+		padding: 20px;
+		overflowY: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.aside{
+		grid-area: lateral;
+		display: flex;
+		flex-direction: column;
+		justify-content: left;
+		align-items: center;
+		hight: 100vh;
+		overflowY: auto;
+		background-color: rgba(0, 0, 255, 0.1);
+	}
+	.rodape {
+		grid-area: rodape;
+		background-color: #fff;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font-size: 1em;
+		padding-right: 20px;
+		color: #444;
+	}
+	.button {
+	  margin-top: 30px;
+	  font-size: 16px;
+	  cursor: pointer;
+	  text-align: center;
+	  text-decoration: none;
+	  outline: none;
+	  color: #fff;
+	  background-color: #24819B;
+	  border: none;
+	  border-radius: 15px;
+	  box-shadow: 0 9px #999;
+	  height: 54px;
+	  width: 100px;
+	}
+	.button:hover {
+		background-color: #0000CD;
+		font-size: 18px;
+	}
+	.button:active {
+	  box-shadow: 0 5px #666;
+	  transform: translateY(4px);
+	}
+	.status-input{
+		display: flex;
+		font-size: 2em;
+		padding:20px;
+	}
+	@media (max-width: 525px){
+		body {
+			height: 100vh;
+			margin: 0px;
+			display: grid;
+			grid-template-rows: 60px 120px 1fr 30px;
+			grid-template-columns:  1fr;    
+			grid-template-areas: 
+				"cabecalho"
+				"lateral"
+				"principal"
+				"rodape";
+		}
+		.aside{
+			grid-area: lateral;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+		}
+		.principal {
+			height: calc(100vh - 210px);
+			background-color: #f0f0f0;
+			padding: 20px;
+		}
+	}

@@ -1,0 +1,74 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Esp12 - Ivo </title>
+		<link rel="stylesheet" href="style.css" type="text/css">
+	</head>
+	<body onload="ArduinoIO()">
+		<header class="cabecalho">
+			Esp12 - NodeMCU + Arduino 
+		</header>
+		<main class="principal">
+			<div class="status-input">
+				<div>
+					Input 1 - &nbsp; 
+				</div>
+				<div id="status-input1">
+					 sem dados..
+				</div>
+			</div>
+			<div class="status-input">
+				<div>
+					Input 2 - &nbsp; 
+				</div>
+				<div id="status-input2">
+					 sem dados..
+				</div>
+			</div>
+		</main>
+		<aside class="aside">
+			<button onclick="liga_desliga('ligar')" id="btnLiga" class="button">Liga</button>
+			<button onclick="liga_desliga('desligar')" id="btnDesliga" class="button">Desliga</button>
+		</aside>
+		<footer class="rodape">
+			Copyright © Ivo
+		</footer>
+	</body>
+</html>
+<script>
+	function ArduinoIO(){
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function(){
+			if (this.readyState == 4) {
+				if (this.status == 200) {
+					document.getElementById("btnLiga").innerHTML = this.responseXML.getElementsByTagName('dados')[0].childNodes[0].nodeValue;
+					document.getElementById("btnDesliga").innerHTML = this.responseXML.getElementsByTagName('dados')[1].childNodes[0].nodeValue;
+					document.getElementById("status-input1").innerHTML = this.responseXML.getElementsByTagName('dados')[2].childNodes[0].nodeValue;
+					document.getElementById("status-input2").innerHTML = this.responseXML.getElementsByTagName('dados')[3].childNodes[0].nodeValue;
+				}
+			}
+		}
+		request.open("GET", "status", true);
+		request.send(null);
+		setTimeout('ArduinoIO()', 500);
+	}
+	
+	function liga_desliga(btn){
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function(){
+			if (this.readyState == 4) {
+				if (this.status == 200) {
+					document.getElementById("btnLiga").innerHTML = this.responseXML.getElementsByTagName('dados')[0].childNodes[0].nodeValue;
+					document.getElementById("btnDesliga").innerHTML = this.responseXML.getElementsByTagName('dados')[1].childNodes[0].nodeValue;
+				}
+			}
+		}
+		request.open("GET", "liga_desliga?btn="+btn, true);
+		request.send(null);
+	}
+	
+</script>
